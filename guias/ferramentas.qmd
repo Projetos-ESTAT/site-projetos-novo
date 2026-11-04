@@ -1,8 +1,0 @@
----
-title: "Ferramentas do projeto"
-description: "Como configurar e usar Slack, Pipefy, Clockify, Drive e GitHub no projeto."
----
-
-::: em-construcao
-**Em construção.** Página nova, montada com as instruções de ferramentas que hoje estão espalhadas dentro de cada jornada.
-:::

@@ -18,6 +18,7 @@ $tinta-suave: #6f6464 !default;
 $grade-cor: rgba(152, 0, 0, 0.07) !default;
 $modo-escuro: false !default;
 
+$web-font-path: false;
 $font-family-sans-serif: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
 $headings-font-family: "Montserrat", sans-serif;
 $headings-font-weight: 700;
@@ -48,8 +49,14 @@ $dropdown-link-hover-bg: $superficie-2;
 $dropdown-border-color: $linha;
 
 $code-block-bg: $superficie;
+$code-bg: $superficie-2;
+$table-color: $tinta;
 $code-color: $acento;
 $callout-color-tip: $acento;
+$callout-color-important: $acento;
+$callout-color-warning: $acento;
+$callout-color-caution: $acento;
+$callout-color-note: $tinta-suave;
 
 /*-- scss:rules --*/
 
@@ -343,7 +350,7 @@ a {
 // Seções do site
 .secoes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 3rem;
   margin: 3rem 0 2rem;
   border-top: 1px solid $linha;
@@ -417,6 +424,209 @@ a {
   .secoes { grid-template-columns: 1fr; }
 }
 
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .secoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
+}
+
+// ---------- Checklist do gerente ----------
+.checklist {
+  margin: 1.5rem 0 2rem;
+
+  button,
+  select,
+  input[type="text"] {
+    font: inherit;
+    font-size: 0.95rem;
+    color: $tinta;
+    background: $superficie;
+    border: 1px solid $linha;
+    border-radius: 6px;
+    padding: 0.45rem 0.75rem;
+  }
+
+  button {
+    cursor: pointer;
+    font-weight: 600;
+    &:hover { border-color: $acento; color: $acento; }
+    &.perigo { border-color: $acento; background: $estat-vermelho; color: #fff; }
+  }
+
+  input[type="text"]::placeholder { color: $tinta-suave; }
+}
+
+.ck-projeto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.75rem;
+
+  > label { font-weight: 600; }
+  select { min-width: 14rem; }
+
+  .ck-novo {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1 1 22rem;
+    min-width: 0;
+    input { flex: 1; min-width: 0; width: 0; }
+  }
+}
+
+.ck-resumo {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.25rem;
+  margin: 1.75rem 0 2rem;
+  align-items: stretch;
+}
+
+.ck-progresso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p { margin: 0.6rem 0 0; color: $tinta-suave; font-weight: 600; }
+}
+
+.ck-barra {
+  height: 10px;
+  border-radius: 999px;
+  background: $superficie-2;
+  overflow: hidden;
+
+  span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: $acento;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+    @if $modo-escuro { box-shadow: 0 0 10px rgba($acento, 0.7); }
+  }
+}
+
+.ck-proximo {
+  border: 1px solid $acento;
+  border-left-width: 4px;
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  background: $superficie;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  .ck-proximo-rotulo { color: $acento; font-weight: 600; font-size: 0.85rem; }
+  strong { font-size: 1.1rem; }
+  a { font-size: 0.9rem; font-weight: 600; margin-top: 0.2rem; }
+}
+
+.ck-etapa {
+  margin-bottom: 1.75rem;
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid $linha;
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0 0 0.35rem;
+    border: none;
+  }
+
+  .ck-etapa-conta { color: $tinta-suave; font-size: 0.9rem; font-weight: 600; }
+
+  &.completa {
+    h2::after { content: " ✓"; color: $acento; }
+  }
+
+  ul { list-style: none; padding: 0; margin: 0; }
+
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: 6px;
+    max-width: none !important;
+
+    &.feito label { color: $tinta-suave; text-decoration: line-through; text-decoration-color: rgba($acento, 0.6); }
+    &.proximo { background: $superficie-2; }
+  }
+
+  input[type="checkbox"] {
+    width: 1.15rem;
+    height: 1.15rem;
+    accent-color: $acento;
+    cursor: pointer;
+  }
+
+  label { cursor: pointer; margin: 0; }
+
+  .ck-como { font-size: 0.85rem; white-space: nowrap; }
+}
+
+.ck-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 767.98px) {
+  .ck-resumo { grid-template-columns: 1fr; }
+  .ck-projeto select { flex: 1 1 0; min-width: 0; }
+  .ck-projeto .ck-novo { flex: 1 1 100%; }
+  .ck-projeto .ck-novo button { flex: none; }
+  .ck-etapa li { grid-template-columns: auto 1fr; }
+  .ck-etapa .ck-como { grid-column: 2; }
+}
+
+// ---------- Modelos de mensagem (Comunicação com o cliente) ----------
+.mensagem {
+  position: relative;
+  background: $superficie;
+  border: 1px solid $linha;
+  border-left: 4px solid $acento;
+  border-radius: 6px;
+  padding: 1rem 1.25rem 3.25rem;
+  margin: 1rem 0 1.75rem;
+  max-width: 72ch;
+
+  p:last-of-type { margin-bottom: 0; }
+  ul { margin-bottom: 0.75rem; }
+
+  .campo {
+    color: $acento;
+    background: rgba($acento, if($modo-escuro, 0.12, 0.07));
+    border-radius: 3px;
+    padding: 0 0.2em;
+    font-weight: 600;
+  }
+}
+
+.mensagem-copiar {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $acento;
+  background: transparent;
+  border: 1px solid $acento;
+  border-radius: 6px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+
+  &:hover { background: $estat-vermelho; border-color: $estat-vermelho; color: #fff; }
 }

@@ -1,8 +1,20 @@
 ---
 title: "Sobre o site"
-description: "Para que serve este site, quem fez e como contribuir."
+description: "Para que serve este site, quem construiu e como contribuir."
 ---
 
-::: em-construcao
-**Em construção.** Página nova: objetivo, créditos de quem construiu as versões anteriores e o passo a passo para editar.
-:::
+## Objetivo
+
+Este site reúne os documentos da Diretoria de Projetos da ESTAT: o passo a passo de quem gerencia e de quem executa um projeto, os modelos de comunicação com o cliente e a história da Diretoria. A ideia é que qualquer membro encontre aqui o que precisa para tocar um projeto, do primeiro dia ao último.
+
+## Créditos
+
+O site começou como a documentação das jornadas do gerente, iniciada pela Coordenadora de Inovação de 2024.2, Letícia Lima, e continuada por Gabriel Henrique em 2025.1. As páginas originais foram escritas por Letícia Lima, Gabriel Ovídio, Ana Beatriz Martinez, Ana Clara Vasconcelos, Ana Luisa Oliveira, Tales Vaz, Felipe Bretas, Marina Cadete e João Vitor Neves da Costa.
+
+Em 2026.2, o site foi reformulado pela Diretoria de Projetos, com nova identidade visual e conteúdo atualizado.
+
+## Como contribuir
+
+O código do site está no [GitHub da Diretoria de Projetos](https://github.com/Projetos-ESTAT/site-projetos-novo). O README do repositório explica como rodar o site no seu computador, como criar uma página nova e como atualizar os links.
+
+Encontrou algo desatualizado? Avise o(a) Diretor(a) de Projetos.

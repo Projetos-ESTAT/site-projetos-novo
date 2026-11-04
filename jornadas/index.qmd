@@ -1,25 +1,221 @@
 ---
 title: "Jornada do gerente"
-description: "As etapas comuns a todo projeto, da alocação ao fechamento. O que muda de um produto para outro está na jornada específica."
+description: "O roteiro de quem foi alocado como gerente de um relatório estatístico, da alocação ao fechamento."
 ---
 
-::: em-construcao
-**Em construção.** Vem de <em>Jornadas → Início</em> do site antigo, mais as etapas comuns que hoje se repetem em cada jornada.
-:::
+O gerente é a ponte entre o cliente e quem executa o projeto. Ele não faz as análises: garante que a equipe entenda o que o cliente quer, que as entregas saiam no prazo e com qualidade, e que o cliente nunca fique sem notícia.
+
+Esta página segue as cinco etapas de um projeto. Para acompanhar o seu, use o [checklist do gerente](checklist.qmd).
+
+## O produto: relatório estatístico
+
+O relatório estatístico apresenta a análise dos dados do cliente, com gráficos, tabelas e métodos estatísticos acompanhados de texto que explica o que os resultados significam. Ele tem quatro partes:
+
+| Parte | Quem escreve |
+|----|----|
+| Introdução | Gerente |
+| Referencial teórico | Gerente |
+| Análises | Alocados |
+| Conclusão | Gerente |
+
+O relatório é montado no template de Quarto da ESTAT, e as análises de cada alocado entram num documento principal que só o gerente edita. Os detalhes estão em [Estruturação](#estruturacao).
+
+**Quem participa de um projeto**
+
+| Papel | O que faz no projeto |
+|----|----|
+| Gerente de projetos (você) | Coordena a equipe, fala com o cliente e responde pelo prazo e pela qualidade |
+| Alocados | Executam as análises |
+| Assessor de vendas | Vendeu o projeto, teve o primeiro contato com o cliente e conhece as expectativas dele |
+| Assessor de gestão | Cuida das questões contratuais e financeiras do projeto |
+| Diretor(a) de Projetos | Acompanha todos os projetos e é quem você aciona quando algo sai do controle |
 
 ## Alocação {#alocacao}
 
+Todo projeto vendido é anunciado no **canal de alocação do Slack**, com uma mensagem neste formato:
+
+``` default
+26000 - Nome do Cliente
+Gerente secundário: @pessoa
+ODS: ...
+Link do Ploomes: ...
+Prazo de entrega: dd/mm
+Membros para a realização:
+  • 1 Gerente de Projetos
+  • 1 Assessor de Gestão
+  • 1 Membro de <matéria>
+```
+
+Quem coordena a alocação marca, nos comentários dessa mensagem, quem vai ser o gerente e o assessor de gestão. Se você foi marcado como gerente, o projeto é seu.
+
+### Alocar a equipe
+
+O primeiro trabalho do gerente é montar a equipe. Para isso, use a [planilha de alocação]({{< var links.planilha-alocacao >}}).
+
+1.  Abra a aba **Alocação**.
+2.  Escolha a **matéria** que o projeto exige e o **nível máximo** de domínio que serve: 1 para quem domina, 2 para quem tem o básico, 3 para quem ainda não sabe.
+3.  A planilha lista os membros em ordem, com o farol de cada um, quantos projetos estão executando, quando foram alocados pela última vez e o que têm interesse em fazer. Confira também se o farol está atualizado.
+4.  Mande mensagem privada no Slack para quem você escolheu, com uma descrição curta do projeto e do que ele vai exigir.
+5.  Quando a pessoa aceitar, marque-a nos comentários da mensagem do projeto no canal de alocação, do mesmo jeito que fizeram com você.
+
+**Como ler o farol**
+
+Toda semana, cada membro responde como está a disponibilidade para os próximos sete dias.
+
+| Farol | O que a pessoa disse |
+|----|----|
+| 🟢 1 | Me aloque imediatamente! |
+| 🟡 2 | Pode me alocar, estou disponível |
+| 🟠 3 | Está começando a apertar, melhor não ser a primeira opção |
+| 🔴 4 | Está bem pegado, só em caso de emergência |
+| ⚫ 5 | Não pode ser alocado(a) de maneira alguma |
+
+Dê preferência a quem está no verde ou no amarelo e a quem tem menos projetos em execução. Isso também ajuda a distribuir os projetos pela empresa.
+
 ## Contextualização {#contextualizacao}
+
+### Com o assessor de vendas
+
+Antes de falar com o cliente, converse com o assessor de vendas que vendeu o projeto. É nessa conversa que tudo o que ele ouviu do cliente passa para você. Saia dela sabendo:
+
+-   o que foi vendido, exatamente, e o que ficou de fora;
+-   o objetivo do cliente com o projeto e a área em que ele trabalha;
+-   as expectativas e as datas que já foram combinadas;
+-   as particularidades do projeto, como uma base de dados difícil;
+-   o perfil do cliente: se prefere textos curtos ou detalhados, se é exigente com prazos, para onde vai a análise (revista, tomada de decisão).
+
+A conversa pode ser por mensagem ou áudio no Slack, ou numa reunião no Google Meet. Evite o WhatsApp.
+
+::: callout-important
+## Não saia com dúvida
+
+Pergunte tudo o que precisar sobre o projeto e sobre o cliente. Nenhuma pergunta é boba nessa hora: é muito mais barato tirar a dúvida agora do que descobrir no meio do projeto.
+:::
+
+### Com os alocados
+
+Tudo o que você aprendeu vai para o **documento de contextualização**. Ele é o ponto de partida da equipe e evita retrabalho. Faça a partir do [modelo de contextualização]({{< var links.modelo-contextualizacao >}}), que tem estas seções:
+
+| Seção | O que entra |
+|----|----|
+| Dados do cliente | Nome, e-mail e telefone |
+| Objetivo do projeto | O que se espera alcançar, de forma clara e objetiva |
+| Contextualização | O máximo de informação sobre o cliente, o problema e o cenário, com links de apoio, como a tese, a apresentação comercial ou o brief |
+| Dicionário das variáveis | As variáveis que serão usadas ou que mais interessam ao cliente, com nome, descrição e tipo |
+| Análises | Cada análise por alocado, com o que deve ser feito, as variáveis e o prazo |
+| Observações | O que mais você souber sobre o cliente: preferências, exigências, destino da análise |
+| Projetos similares | Links de projetos anteriores que sirvam de base |
+
+Se der, apresente o documento numa reunião rápida com a equipe e tire as dúvidas ali.
 
 ## Estruturação {#estruturacao}
 
+Com a equipe montada, crie os espaços onde o projeto vai acontecer. Use sempre o código do projeto no nome, para todo mundo achar tudo depois.
+
+| Onde | Nome | Quem cria |
+|----|----|----|
+| Canal no Slack | `26000-nome-do-cliente` | Gerente de projetos |
+| Card no Pipefy | `26000 - Nome do Cliente` | Assessor de vendas (o gerente completa) |
+| Pasta no Drive | `26000 - Nome do Cliente` | Gerente de projetos |
+| Repositório no GitHub | `26000-Nome-do-Cliente` | Gerente de projetos |
+| Grupo no WhatsApp | `[ESTAT] - Nome do Cliente` | Gerente de projetos |
+
+### Canal no Slack
+
+O canal do projeto é o **principal meio de comunicação da equipe**: entregas, atualizações e combinados ficam registrados ali, e não no WhatsApp. Adicione os alocados, o assessor de vendas, o assessor de gestão e o(a) Diretor(a) de Projetos.
+
+### Pipefy
+
+O [pipe de projetos]({{< var links.pipefy-projetos >}}) é onde a ESTAT controla todos os projetos. O card do seu projeto é criado pelo assessor de vendas, e você completa com alocados, matérias, etiquetas e data de vencimento, que é a data de entrega final combinada com o cliente.
+
+Mova o card de fase **no dia em que cada coisa acontecer**. A mais importante: quando o cliente assinar o contrato, o card vai para **Execução**. Só a partir daí o projeto pode começar de verdade.
+
+### Registro de horas
+
+::: callout-note
+## Em definição
+
+A ESTAT não usa mais o Clockify. Quando a nova ferramenta de registro de horas for definida, o passo a passo entra aqui.
+:::
+
+### Drive
+
+Crie a pasta do projeto dentro da [pasta de projetos no Drive]({{< var links.drive-projetos >}}), com o documento de contextualização e a base de dados do cliente.
+
+### Repositório no GitHub
+
+O relatório é feito num repositório no [GitHub de Projetos]({{< var links.github-projetos >}}), criado a partir do [template da ESTAT]({{< var links.github-template >}}).
+
+1.  Na página da organização, clique em **New** e escolha o template `Projetos-ESTAT/Quarto-Template`.
+2.  Dê ao repositório o nome do projeto, no padrão da tabela acima.
+3.  Na descrição do repositório, escreva as matérias do projeto. Isso ajuda quem procurar projetos parecidos no futuro.
+4.  Nas pastas `rdocs` e `resultados`, troque o nome dos arquivos de exemplo pelo nome de cada alocado, como `consultor1.R` → `nome-do-alocado.R`. Faça o mesmo com os arquivos `.qmd`. Assim, cada alocado trabalha no próprio arquivo.
+5.  Coloque a base de dados do cliente no repositório, para a equipe ter acesso fácil.
+6.  Em `arquivos_tex/nome_dos_alocados_e_do_cliente.tex`, preencha o nome do cliente e dos alocados que vão aparecer no relatório.
+
+O documento principal do relatório é o `template-relatorio.qmd`, e **só o gerente edita esse arquivo**. É nele que você escreve a introdução, o referencial teórico e a conclusão, e junta as partes de cada alocado na ordem certa.
+
+### Grupo no WhatsApp
+
+O grupo é o canal com o **cliente**: é por ali que você marca reuniões, avisa das entregas e mantém o cliente informado. Participam o cliente, o(a) Diretor(a) de Projetos, o assessor de gestão, o assessor de vendas e você. A [foto do grupo]({{< var links.foto-grupo >}}) é o logo da ESTAT.
+
+Assim que criar o grupo, mande a mensagem de boas-vindas. O modelo está no [Manual de UX]({{< var links.manual-ux >}}) e em [Comunicação com o cliente](../guias/comunicacao-cliente.qmd).
+
+::: callout-tip
+## Feche a etapa no Slack
+
+Quando tudo estiver criado, mande os links no canal do projeto. A partir daí, você acompanha o andamento por essas ferramentas e pede correções por elas.
+:::
+
 ## Execução {#execucao}
+
+### Reunião de kickoff
+
+Uma reunião inicial com o cliente é opcional, mas muito recomendada. Nela você revisa o escopo, as análises e os prazos, e já alinha as expectativas. Cliente que conheceu a equipe logo no começo tende a responder melhor às pesquisas de satisfação no final.
+
+### Calendarização
+
+A ESTAT trabalha com várias **entregas parciais** antes da entrega final. Assim o cliente acompanha o projeto e os desvios aparecem cedo. Para definir as datas, leve em conta:
+
+-   a data da entrega final;
+-   o tempo que você vai precisar para corrigir cada entrega;
+-   a complexidade do projeto;
+-   a disponibilidade dos alocados.
+
+Com as datas definidas, monte o calendário no [modelo do Canva]({{< var links.canva-calendarizacao >}}) e mande para o cliente.
+
+### Prazos internos
+
+Combine com os alocados prazos **antes** das datas do cliente. Se a entrega para o cliente é no dia 10, peça o material da equipe por volta do dia 6. Assim dá tempo de revisar e corrigir com calma.
+
+Dividir o trabalho em entregas pequenas também ajuda. Uma análise exploratória, por exemplo, pode sair em três partes: os gráficos, as medidas-resumo e as interpretações.
+
+Nas correções, confira sempre se o material segue a padronização da ESTAT. As entregas parciais existem justamente para isso.
+
+::: callout-important
+## Quando um alocado não entrega
+
+Se alguém perder um prazo sem justificativa prévia, avise o(a) Diretor(a) de Projetos.
+:::
+
+### Entregas parciais e atualizações
+
+Sempre que possível, faça a entrega parcial **em reunião**, mostrando o relatório ao vivo. Mandar o PDF com uma mensagem também vale, mas a reunião aproxima o cliente e facilita a coleta da avaliação no final.
+
+Mesmo nas semanas sem entrega, mande uma atualização dizendo em que pé o projeto está. O cliente nunca deve ficar sem notícia, principalmente se houver atraso. Os modelos de mensagem estão em [Comunicação com o cliente](../guias/comunicacao-cliente.qmd).
 
 ## Fechamento {#fechamento}
 
-## Jornadas por produto
+### Entrega final
 
--   [Relatórios estatísticos](relatorios.qmd)
--   [Dashboards](dashboards.qmd)
--   [Consultoria](consultoria.qmd)
--   [Modelos preditivos](modelos-preditivos.qmd)
+De preferência, a entrega final também é em reunião. Depois dela, faça as correções que o cliente pedir. Com tudo entregue, o projeto está concluído: mova o card no Pipefy.
+
+### NPS e CSAT
+
+A avaliação do cliente é uma meta da ESTAT como empresa júnior, então não deixe passar. O melhor momento é o fim da reunião de entrega: compartilhe o [formulário de NPS e CSAT]({{< var links.form-nps-csat >}}) e peça para o cliente responder ali mesmo.
+
+Se não der, a coleta também pode ser feita pelo WhatsApp Business da Diretoria. Fale com o(a) Diretor(a) de Projetos.
+
+### Feedback da equipe
+
+Mande para os alocados o [formulário de feedback]({{< var links.form-feedback-alocados >}}) e preencha também o seu.

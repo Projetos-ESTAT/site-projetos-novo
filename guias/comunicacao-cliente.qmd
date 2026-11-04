@@ -1,8 +1,157 @@
 ---
 title: "Comunicação com o cliente"
-description: "Modelos de mensagem e boas práticas para cada momento do projeto."
+description: "O que mandar para o cliente em cada momento do projeto, com modelos de mensagem prontos para copiar."
+engine: markdown
 ---
 
-::: em-construcao
-**Em construção.** Vem do <em>Manual de UX</em> do site antigo, revisado, com os exemplos generalizados.
+O cliente avalia o projeto pelo relatório e também por como foi acompanhado durante o caminho. Duas regras valem para todas as mensagens:
+
+-   **O cliente nunca fica sem notícia.** Mesmo quando não há nada para entregar, ele sabe em que pé o projeto está.
+-   **Fale a língua do cliente.** Sem informalidade, mas de um jeito que ele se sinta à vontade. Isso vale também para os termos estatísticos.
+
+Os modelos abaixo seguem a ordem do projeto. Troque os campos em destaque e ajuste o tom para cada cliente.
+
+## Primeiro contato
+
+**Quando:** logo depois de criar o grupo no WhatsApp. De preferência, crie o grupo e mande a mensagem de manhã.
+
+::: mensagem
+Bom dia, [\@Cliente]{.campo}! Tudo certo?
+
+Me chamo [Seu nome]{.campo} e sou o Gerente de Projetos responsável pelo seu projeto com a ESTAT daqui em diante. O [\@vendedor]{.campo} é o Assessor de Vendas, quem teve o primeiro contato com você, e o [\@gestor]{.campo} é o Assessor de Gestão, responsável pelas questões contratuais e financeiras do seu projeto.
+
+Se surgir qualquer dúvida durante o projeto, pode falar com a gente por este grupo!
 :::
+
+## Reunião de kickoff
+
+**Quando:** junto com a mensagem de primeiro contato, para o projeto começar o quanto antes. Se o assessor de gestão for apresentar o escopo no grupo, mande o convite logo depois.
+
+A reunião de kickoff começa o projeto alinhando expectativas e criando uma relação de confiança com o cliente. Nela você apresenta:
+
+-   o escopo geral do projeto;
+-   as análises do relatório;
+-   o esboço da calendarização, com foco nas datas de entrega.
+
+Deixe claro desde já que as entregas serão feitas em reunião.
+
+::: mensagem
+[\@Cliente]{.campo}, para darmos início ao projeto, gostaria de marcar uma reunião de kickoff e alinhamento com você, para conversarmos sobre a estrutura do projeto e os seus objetivos. Você estaria disponível [amanhã / depois de amanhã / no dia XX]{.campo}? Qual horário fica melhor?
+:::
+
+## Calendarização
+
+**Quando:** depois do kickoff, com as datas de entrega já combinadas na reunião.
+
+Monte o calendário definitivo no [modelo do Canva]({{< var links.canva-calendarizacao >}}), também fixado na aba Calendarização do canal de projetos, e mande para o cliente. Junto com o calendário, mande uma mensagem que explique cada fase com mais detalhe. Por exemplo, num projeto fictício sobre a satisfação dos alunos de uma academia:
+
+::: mensagem
+Segue o calendário do projeto! Para ficar mais claro o que vamos fazer em cada fase:
+
+**1ª fase: tratamento dos dados**\
+Como a base tem respostas de vários anos, vamos organizar e padronizar os dados até o dia [dd/mm]{.campo}.
+
+**2ª fase: análises**\
+Análise 1: perfil dos alunos
+
+-   gráfico de colunas da faixa etária;
+-   tabela de frequências do tipo de plano.
+
+Análise 2: satisfação por tipo de plano
+
+-   boxplot das notas de satisfação por plano;
+-   teste para comparar a satisfação entre os planos.
+
+**Entrega parcial:** [dd/mm]{.campo}\
+**Entrega final:** [dd/mm]{.campo}
+:::
+
+## Atualizações semanais
+
+**Quando:** toda segunda-feira, do início ao fim do projeto.
+
+Conte o que já foi feito e entregue e o que vai acontecer na semana. Se houver entrega na semana, aproveite para confirmar a reunião e o horário.
+
+Se o projeto pedir um acompanhamento ainda mais de perto, mande também um planejamento semanal, parecido com a calendarização.
+
+::: mensagem
+Bom dia, [\@Cliente]{.campo}! Segue a nossa atualização da semana:
+
+[O que foi feito na semana passada e o que será feito nesta semana.]{.campo}
+
+Também queria confirmar a nossa reunião do dia [XX]{.campo}: ainda podemos manter essa data? Tem preferência de horário?
+
+Fico à disposição para qualquer dúvida ou se quiser mais detalhes sobre o andamento.
+:::
+
+## Entregas
+
+**Quando:** no dia de cada entrega, parcial ou final.
+
+Mande uma mensagem lembrando da reunião, do horário e do que vai ser apresentado. Mostre que a equipe está animada para apresentar o resultado.
+
+::: mensagem
+Bom dia, [\@Cliente]{.campo}! Passando para lembrar da nossa reunião de hoje, às [horário]{.campo}, em que vamos apresentar [o que será entregue]{.campo}. Estamos muito animados para mostrar o resultado!
+
+[Link da reunião]{.campo}
+:::
+
+**Durante a reunião,** explique os pontos principais e pergunte se ficou alguma dúvida ao fim de cada parte.
+
+**No final,** diga que vai dar um tempo para o cliente responder a [pesquisa de satisfação]({{< var links.form-nps-csat >}}) e mande o link no chat da reunião. Depois que ele responder, despeça-se e coloque-se à disposição para as dúvidas que surgirem depois.
+
+## Quando algo atrasa
+
+Imprevistos acontecem. O que define como o cliente vai lembrar do projeto é a forma como você lida com eles. Dois pontos são essenciais:
+
+-   **Transparência:** avise o cliente assim que souber do atraso, explicando o que aconteceu e qual é a nova previsão. Nunca deixe que ele descubra sozinho no dia da entrega.
+-   **Compensação:** pense na pizzaria que atrasa o pedido, mas avisa logo que o pneu do entregador furou e manda um refrigerante de brinde. Mesmo com o atraso, a avaliação tende a ser boa. Pense no que a equipe pode oferecer a mais, como uma análise extra ou uma explicação mais detalhada na reunião.
+
+::: mensagem
+Boa tarde, [\@Cliente]{.campo}! Queria te atualizar sobre o projeto: [o que aconteceu]{.campo}, e por isso vamos precisar de mais alguns dias para entregar [o que atrasou]{.campo} com a qualidade que você espera. A nova previsão é [dd/mm]{.campo}.
+
+[O que a equipe vai oferecer a mais, se for o caso.]{.campo}
+
+Peço desculpas pelo imprevisto e sigo à disposição para qualquer dúvida!
+:::
+
+```{=html}
+<script>
+document.querySelectorAll(".mensagem").forEach(function (box) {
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "mensagem-copiar";
+  btn.textContent = "Copiar mensagem";
+  btn.addEventListener("click", function () {
+    var texto = Array.from(box.children)
+      .filter(function (el) { return el !== btn; })
+      .map(function (el) {
+        // negrito no formato do WhatsApp: *texto*
+        var c = el.cloneNode(true);
+        c.querySelectorAll("strong").forEach(function (b) { b.textContent = "*" + b.textContent.trim() + "*"; });
+        var tmp = document.createElement("div");
+        tmp.style.position = "absolute"; tmp.style.left = "-9999px";
+        tmp.appendChild(c); document.body.appendChild(tmp);
+        var t;
+        if (c.tagName === "UL" || c.tagName === "OL") {
+          t = Array.from(c.children).map(function (li) { return "- " + li.innerText.trim(); }).join("\n");
+        } else {
+          t = c.innerText.trim();
+        }
+        tmp.remove();
+        return t;
+      }).join("\n\n");
+    function feito(msg) {
+      btn.textContent = msg;
+      setTimeout(function () { btn.textContent = "Copiar mensagem"; }, 2000);
+    }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(texto).then(function () { feito("Copiada!"); }, function () { feito("Não deu para copiar"); });
+    } else {
+      feito("Não deu para copiar");
+    }
+  });
+  box.appendChild(btn);
+});
+</script>
+```

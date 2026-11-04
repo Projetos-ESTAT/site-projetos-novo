@@ -1,0 +1,31 @@
+# =====================================================================
+# Links usados no site.
+# Para atualizar um link, troque o endereço aqui: todas as páginas que
+# usam esse link passam a apontar para o novo endereço.
+# Nas páginas, o link é usado assim: [texto]({{< var links.nome >}})
+# Última revisão: 2026.2
+# =====================================================================
+
+links:
+  # Alocação
+  planilha-alocacao: "https://docs.google.com/spreadsheets/d/14b2Xz9s_Xj9nQo3zG-lD_8JjxnDn7ZCoAijPh8DBTN0/edit?gid=1885492041#gid=1885492041"
+
+  # Contextualização
+  modelo-contextualizacao: "https://docs.google.com/document/d/1-VOobJ5w6AgY-7VJBRs7ZIX52xgiKnBuBK-EOtXoBSk/edit?tab=t.0"
+
+  # Estruturação
+  pipefy-projetos: "https://app.pipefy.com/pipes/306900538"
+  drive-projetos: "https://drive.google.com/drive/u/0/folders/1HJAlDOg2fQ2jERHSGQu7besbd59rVR6o"
+  github-projetos: "https://github.com/Projetos-ESTAT"
+  github-template: "https://github.com/Projetos-ESTAT/Quarto-Template"
+  github-desktop: "https://desktop.github.com/"
+  video-clonar-repo: "https://youtu.be/PBIxrjy3ANs"
+  foto-grupo: "https://drive.google.com/file/d/18TpliUg_kF5yX3YCQAB_H438HogD4lph/view?usp=drive_link"
+  manual-ux: "https://docs.google.com/document/d/1zCEL1PvRrmiOUoBuE0FRB551xgz9adGz/edit"
+
+  # Execução
+  canva-calendarizacao: "https://www.canva.com/design/DAG-zs9iSsk/Cdb9XNGclkG7XaAaP2bxCQ/view"
+
+  # Fechamento
+  form-nps-csat: "https://app.pipefy.com/organizations/118326/interfaces/a66cd083-616f-4dc2-9b0e-49f7a3e4c29e/pages/b012d025-7bf5-4fad-b9f6-dd9d5791797d?form=5d7bde70-9829-4db1-8dd3-382cb6b41d79&origin=public%20form"
+  form-feedback-alocados: "https://app.pipefy.com/organizations/118326/interfaces/a66cd083-616f-4dc2-9b0e-49f7a3e4c29e/pages/b012d025-7bf5-4fad-b9f6-dd9d5791797d?form=c752e3a4-0534-4fd4-857b-371541077172&origin=public%20form"

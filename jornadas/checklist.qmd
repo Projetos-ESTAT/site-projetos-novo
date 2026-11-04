@@ -1,0 +1,217 @@
+---
+title: "Checklist do gerente"
+description: "Marque o que já foi feito no seu projeto e veja qual é o próximo passo. O progresso fica salvo neste navegador."
+engine: markdown
+toc: false
+---
+
+```{=html}
+<div class="checklist" id="checklist">
+  <div class="ck-projeto">
+    <label for="ck-select">Projeto</label>
+    <select id="ck-select"></select>
+    <form id="ck-novo" class="ck-novo">
+      <label for="ck-nome" class="visually-hidden">Código e nome do novo projeto</label>
+      <input id="ck-nome" type="text" placeholder="26000 - Nome do Cliente" autocomplete="off">
+      <button type="submit">Adicionar projeto</button>
+    </form>
+  </div>
+
+  <div class="ck-resumo" aria-live="polite">
+    <div class="ck-progresso">
+      <div class="ck-barra"><span id="ck-barra"></span></div>
+      <p id="ck-contagem"></p>
+    </div>
+    <div class="ck-proximo" id="ck-proximo"></div>
+  </div>
+
+  <div id="ck-etapas"></div>
+
+  <div class="ck-acoes">
+    <button type="button" id="ck-limpar">Desmarcar tudo deste projeto</button>
+    <button type="button" id="ck-remover">Remover este projeto da lista</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const J = "index.html";
+  const ETAPAS = [
+    { nome: "Alocação", itens: [
+      ["aloc-planilha", "Escolher os alocados na planilha de alocação", "#alocar-a-equipe"],
+      ["aloc-convite", "Convidar os alocados por mensagem no Slack", "#alocar-a-equipe"],
+      ["aloc-marcar", "Marcar os alocados na mensagem do canal de alocação", "#alocar-a-equipe"]
+    ]},
+    { nome: "Contextualização", itens: [
+      ["ctx-comercial", "Conversar com o assessor de vendas", "#com-o-assessor-de-vendas"],
+      ["ctx-documento", "Escrever o documento de contextualização", "#com-os-alocados"],
+      ["ctx-apresentar", "Apresentar o documento para a equipe", "#com-os-alocados"]
+    ]},
+    { nome: "Estruturação", itens: [
+      ["est-slack", "Criar o canal do projeto no Slack", "#canal-no-slack"],
+      ["est-pipefy", "Completar o card no Pipefy", "#pipefy"],
+      ["est-drive", "Criar a pasta do projeto no Drive", "#drive"],
+      ["est-github", "Criar o repositório a partir do template", "#repositório-no-github"],
+      ["est-arquivos", "Renomear os arquivos dos alocados e preencher os nomes no .tex", "#repositório-no-github"],
+      ["est-whatsapp", "Criar o grupo no WhatsApp e mandar a mensagem de boas-vindas", "#grupo-no-whatsapp"],
+      ["est-links", "Mandar os links de tudo no canal do projeto", "#grupo-no-whatsapp"],
+      ["est-execucao", "Mover o card para Execução quando o contrato for assinado", "#pipefy"]
+    ]},
+    { nome: "Execução", itens: [
+      ["exe-kickoff", "Fazer a reunião de kickoff (recomendada)", "#reunião-de-kickoff"],
+      ["exe-calendario", "Montar a calendarização e mandar para o cliente", "#calendarização"],
+      ["exe-prazos", "Combinar os prazos internos com os alocados", "#prazos-internos"],
+      ["exe-textos", "Escrever introdução, referencial teórico e conclusão", "#o-produto-relatório-estatístico"],
+      ["exe-revisao", "Revisar as entregas dos alocados", "#prazos-internos"],
+      ["exe-parciais", "Fazer as entregas parciais para o cliente", "#entregas-parciais-e-atualizações"]
+    ]},
+    { nome: "Fechamento", itens: [
+      ["fec-entrega", "Fazer a entrega final", "#entrega-final"],
+      ["fec-correcoes", "Aplicar as correções pedidas pelo cliente", "#entrega-final"],
+      ["fec-nps", "Coletar o NPS e o CSAT do cliente", "#nps-e-csat"],
+      ["fec-feedback", "Enviar o formulário de feedback aos alocados e preencher o seu", "#feedback-da-equipe"],
+      ["fec-card", "Mover o card no Pipefy para concluído", "#entrega-final"]
+    ]}
+  ];
+  const TOTAL = ETAPAS.reduce((n, e) => n + e.itens.length, 0);
+  const CHAVE = "estat-checklist-gerente-v1";
+  const PADRAO = "Meu projeto";
+
+  // ---------- armazenamento (falha em silêncio se o navegador bloquear) ----------
+  let estado = { atual: PADRAO, projetos: { [PADRAO]: {} } };
+  try {
+    const salvo = JSON.parse(localStorage.getItem(CHAVE));
+    if (salvo && salvo.projetos && Object.keys(salvo.projetos).length) estado = salvo;
+    if (!estado.projetos[estado.atual]) estado.atual = Object.keys(estado.projetos)[0];
+  } catch (e) {}
+  function salvar() {
+    try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) {}
+  }
+  const marcados = () => estado.projetos[estado.atual];
+
+  // ---------- elementos ----------
+  const $ = (id) => document.getElementById(id);
+  const sel = $("ck-select"), etapasEl = $("ck-etapas");
+
+  function esc(t) {
+    const d = document.createElement("div"); d.textContent = t; return d.innerHTML;
+  }
+
+  function desenharSelect() {
+    sel.innerHTML = Object.keys(estado.projetos)
+      .map((p) => `<option${p === estado.atual ? " selected" : ""}>${esc(p)}</option>`).join("");
+  }
+
+  function desenharEtapas() {
+    etapasEl.innerHTML = ETAPAS.map((etapa, i) => `
+      <section class="ck-etapa" aria-labelledby="ck-etapa-${i}">
+        <header>
+          <h2 id="ck-etapa-${i}">${etapa.nome}</h2>
+          <span class="ck-etapa-conta" data-etapa="${i}"></span>
+        </header>
+        <ul>
+          ${etapa.itens.map(([id, texto, ancora]) => `
+            <li>
+              <input type="checkbox" id="ck-${id}" data-id="${id}">
+              <label for="ck-${id}">${texto}</label>
+              <a class="ck-como" href="${J}${ancora}">como fazer</a>
+            </li>`).join("")}
+        </ul>
+      </section>`).join("");
+  }
+
+  function atualizar() {
+    const m = marcados();
+    let feitos = 0, proximo = null;
+    ETAPAS.forEach((etapa, i) => {
+      let n = 0;
+      etapa.itens.forEach(([id, texto, ancora]) => {
+        const cb = $("ck-" + id);
+        cb.checked = !!m[id];
+        cb.closest("li").classList.toggle("feito", !!m[id]);
+        cb.closest("li").classList.remove("proximo");
+        if (m[id]) n++; else if (!proximo) proximo = { id, texto, ancora, etapa: etapa.nome };
+      });
+      feitos += n;
+      const conta = etapasEl.querySelector(`[data-etapa="${i}"]`);
+      conta.textContent = `${n} de ${etapa.itens.length}`;
+      conta.closest(".ck-etapa").classList.toggle("completa", n === etapa.itens.length);
+    });
+
+    $("ck-barra").style.width = (100 * feitos / TOTAL) + "%";
+    $("ck-contagem").textContent = `${feitos} de ${TOTAL} etapas concluídas`;
+
+    const prox = $("ck-proximo");
+    if (proximo) {
+      $("ck-" + proximo.id).closest("li").classList.add("proximo");
+      prox.innerHTML = `<span class="ck-proximo-rotulo">Próximo passo · ${proximo.etapa}</span>
+        <strong>${proximo.texto}</strong>
+        <a href="${J}${proximo.ancora}">Ver como fazer na jornada</a>`;
+    } else {
+      prox.innerHTML = `<span class="ck-proximo-rotulo">Projeto concluído</span>
+        <strong>Todas as etapas foram feitas. Bom trabalho!</strong>`;
+    }
+  }
+
+  // ---------- eventos ----------
+  etapasEl.addEventListener("change", (ev) => {
+    const id = ev.target.dataset.id;
+    if (!id) return;
+    if (ev.target.checked) marcados()[id] = true; else delete marcados()[id];
+    salvar(); atualizar();
+  });
+
+  sel.addEventListener("change", () => { estado.atual = sel.value; salvar(); atualizar(); });
+
+  $("ck-novo").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const nome = $("ck-nome").value.trim();
+    if (!nome) { $("ck-nome").focus(); return; }
+    if (!estado.projetos[nome]) estado.projetos[nome] = {};
+    // o projeto padrão vazio some quando o primeiro projeto de verdade é criado
+    if (estado.projetos[PADRAO] && nome !== PADRAO && !Object.keys(estado.projetos[PADRAO]).length) {
+      delete estado.projetos[PADRAO];
+    }
+    estado.atual = nome;
+    $("ck-nome").value = "";
+    salvar(); desenharSelect(); atualizar();
+  });
+
+  $("ck-limpar").addEventListener("click", () => {
+    estado.projetos[estado.atual] = {};
+    salvar(); atualizar();
+  });
+
+  const btnRemover = $("ck-remover");
+  let confirmando = false;
+  btnRemover.addEventListener("click", () => {
+    if (!confirmando) {
+      confirmando = true;
+      btnRemover.textContent = "Clique de novo para remover";
+      btnRemover.classList.add("perigo");
+      setTimeout(() => {
+        confirmando = false;
+        btnRemover.textContent = "Remover este projeto da lista";
+        btnRemover.classList.remove("perigo");
+      }, 4000);
+      return;
+    }
+    confirmando = false;
+    delete estado.projetos[estado.atual];
+    if (!Object.keys(estado.projetos).length) estado.projetos[PADRAO] = {};
+    estado.atual = Object.keys(estado.projetos)[0];
+    btnRemover.textContent = "Remover este projeto da lista";
+    btnRemover.classList.remove("perigo");
+    salvar(); desenharSelect(); atualizar();
+  });
+
+  desenharSelect(); desenharEtapas(); atualizar();
+})();
+</script>
+```
+
+::: callout-note
+## Onde o progresso fica salvo
+
+O checklist fica guardado só neste navegador, neste computador. Se você abrir o site em outro aparelho, ou limpar os dados do navegador, ele começa vazio.
+:::

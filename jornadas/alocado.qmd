@@ -1,8 +1,196 @@
 ---
 title: "Jornada do alocado"
-description: "O que esperar e o que fazer quando você é alocado num projeto."
+engine: markdown
+description: "O que fazer quando você é alocado para executar as análises de um relatório: do primeiro contato com o projeto até a entrega para o gerente."
 ---
 
-::: em-construcao
-**Em construção.** Vem de <em>Jornadas → Alocados - Quarto</em> do site antigo, revisado.
+Como alocado, você faz as análises do relatório. O gerente cuida do cliente, organiza a equipe e monta o documento final. Seu trabalho é entregar análises corretas, bem explicadas e dentro da padronização da ESTAT, nos prazos combinados.
+
+## Antes de começar
+
+Na primeira vez que for executar um projeto, deixe o computador pronto:
+
+-   **R e RStudio** instalados;
+-   uma conta no **GitHub** com acesso à organização Projetos-ESTAT;
+-   o [**GitHub Desktop**]({{< var links.github-desktop >}}), que é o jeito mais fácil de baixar e enviar o projeto;
+-   o **LaTeX** configurado para gerar o PDF do relatório (veja abaixo).
+
+### Configurar o LaTeX (só uma vez por computador)
+
+Rode este código no console do R, fora de qualquer projeto:
+
+``` r
+install.packages("tinytex")
+tinytex::install_tinytex()
+tinytex::tlmgr_install("hyphen-portuguese")
+```
+
+A última linha instala a hifenização em português, que a padronização da ESTAT usa. Os outros pacotes do LaTeX são baixados sozinhos na primeira vez que você gerar o PDF de um projeto, então essa primeira vez demora mais.
+
+## Entender o projeto
+
+Seu gerente vai te passar o **documento de contextualização**. Nele estão o objetivo do projeto, a descrição dos dados, o dicionário das variáveis e, principalmente, **as suas análises, com as variáveis e os prazos de cada uma**.
+
+Leia com calma antes de abrir o R. Se faltar alguma dessas informações ou algo não fizer sentido, pergunte ao gerente no canal do projeto no Slack.
+
+::: callout-important
+## Não existe dúvida boba
+
+Tirar uma dúvida no começo custa uma mensagem. Descobrir no meio do projeto que a análise foi feita errada custa refazer tudo.
+:::
+
+## Baixar o projeto
+
+O gerente cria o repositório do projeto no GitHub e manda o link no canal do Slack. Para ter uma cópia no seu computador:
+
+1.  Abra o link do repositório.
+2.  Clique no botão verde **Code** e depois em **Open with GitHub Desktop**.
+3.  No GitHub Desktop, confira o endereço do repositório e escolha a pasta do seu computador onde ele vai ficar.
+4.  Clique em **Clone**.
+
+Se preferir ver o passo a passo, tem um [vídeo curto]({{< var links.video-clonar-repo >}}).
+
+Depois, abra o projeto pelo arquivo `.Rproj` da pasta. Trabalhar sempre dentro do projeto do RStudio garante que os caminhos dos arquivos funcionem igual no computador de todo mundo.
+
+## Onde fica cada coisa
+
+O gerente já renomeou os arquivos com o seu nome. Você só mexe nos seus.
+
+| Arquivo | Para que serve |
+|----|----|
+| `rdocs/seu-nome.R` | **Todo o seu código**: leitura dos dados, tratamento, gráficos e tabelas |
+| `seu-nome.qmd` | O texto das suas análises, com os gráficos e as tabelas que o `.R` gerou |
+| `rdocs/source/packages.R` | Pacotes, o tema dos gráficos (`theme_estat()`) e funções de apoio, como `print_quadro_resumo()`. Não altere |
+| `rdocs/source/padraograficos.R` | Modelos dos gráficos mais usados, no padrão da ESTAT. Copie de lá para o seu `.R` |
+| `resultados/` | Onde aparecem os PDFs gerados |
+
+O primeiro bloco do seu `.qmd` já chama o seu `.R`, então tudo o que você cria no `.R` fica disponível no texto:
+
+```` markdown
+```{r setup}
+source("rdocs/seu-nome.R")
+```
+````
+
+::: callout-tip
+## Deixe o `.R` limpo
+
+Mantenha no `.R` só o código que é usado nas análises. Teste o que quiser, mas apague ou comente o que não ficou. Isso facilita a vida de quem revisa e a sua, se precisar voltar ao projeto.
+:::
+
+## Fazer as análises
+
+Os exemplos abaixo usam uma variável fictícia, *turno de trabalho*, para mostrar o formato de cada elemento.
+
+### Gráficos
+
+Crie o gráfico no seu `.R`, guardando num objeto. Use o modelo do `padraograficos.R` e termine sempre com `theme_estat()`:
+
+``` r
+grafico_turno <- ggplot(dados_turno) +
+  aes(x = fct_reorder(Turno, Frequencia, .desc = TRUE), y = Frequencia, label = Legenda) +
+  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
+  geom_text(position = position_dodge(width = .9), vjust = -0.5, size = 3) +
+  labs(x = "Turno", y = "Frequência") +
+  theme_estat()
+```
+
+No `.qmd`, só mostre o objeto, num bloco com rótulo e legenda:
+
+```` markdown
+```{r}
+#| label: fig-turno
+#| fig-cap: "Gráfico de colunas do turno de trabalho"
+#| fig-pos: "H"
+grafico_turno
+```
+````
+
+O `label` tem que começar com `fig-` e ser único no relatório. É com ele que você cita o gráfico no texto.
+
+### Tabelas
+
+As tabelas são escritas em LaTeX, dentro de um bloco com rótulo começando com `tbl-`. A legenda vai na última linha, antes de fechar o bloco:
+
+```` markdown
+::: {#tbl-turno layout-align="center" tbl-pos="H"}
+```{=latex}
+\begin{tabular}{@{}l|rr@{}}
+\toprule
+\textbf{Turno} & \textbf{Frequência} & \textbf{Porcentagem} \\ \midrule
+Manhã          & 54                  & 45,00\%              \\
+Tarde          & 42                  & 35,00\%              \\
+Noite          & 24                  & 20,00\%              \\ \midrule
+\textbf{Total} & 120                 & 100\%                \\ \bottomrule
+\end{tabular}
+```
+
+Frequências do turno de trabalho
+:::
+````
+
+### Quadros de medidas-resumo
+
+Para variáveis numéricas, a função `print_quadro_resumo()` monta o quadro de medidas-resumo em LaTeX. Rode a função no console e copie o resultado. Mas ele vem com código a mais: aproveite **só o trecho entre `\begin{tabular}` e `\end{tabular}`** e coloque num bloco com rótulo começando com `quad-`:
+
+```` markdown
+::: {#quad-idade layout-align="center" quad-pos="H"}
+```{=latex}
+\begin{tabular}{| l | S[table-format = 2.2] |}
+\hline
+  \textbf{Estatística} & \textbf{Valor} \\
+\hline
+  Média & 34,20 \\
+  Desvio Padrão & 9,85 \\
+  Variância & 97,02 \\
+  Mínimo & 19 \\
+  1º Quartil & 26 \\
+  Mediana & 33 \\
+  3º Quartil & 41 \\
+  Máximo & 62 \\
+\hline
+\end{tabular}
+```
+
+Medidas resumo da idade
+:::
+````
+
+A legenda que a função coloca em `\caption{}` vira a última linha do bloco, e o `\label{}` dela vira o rótulo `#quad-` do início.
+
+### Citar no texto
+
+Toda figura, tabela e quadro precisa ser citado no texto, para o leitor saber de qual você está falando. No template, cada um é citado de um jeito:
+
+| Elemento | Como citar |
+|----|----|
+| Gráfico | `$\ref{fig-turno}$` |
+| Tabela | `[@tbl-turno]` |
+| Quadro | `[**Quadro** @quad-idade]` |
+
+Por exemplo:
+
+``` markdown
+Pela [@tbl-turno] e pelo gráfico $\ref{fig-turno}$, a maior parte das
+pessoas trabalha pela manhã (45,00%), seguida do turno da tarde (35,00%).
+```
+
+::: callout-tip
+## Interprete, não só descreva
+
+O cliente quer saber o que os números significam para o problema dele. Depois de descrever o resultado, diga o que ele indica, sempre de um jeito que alguém de fora da estatística entenda.
+:::
+
+## Entregar para o gerente
+
+1.  Gere o PDF do seu `.qmd` (botão **Render** no RStudio) e confira se tudo aparece certo: gráficos, tabelas, legendas e citações.
+2.  No GitHub Desktop, faça o **commit** das suas alterações com uma mensagem que diga o que mudou e clique em **Push origin**.
+3.  Avise o gerente no canal do projeto no Slack que a entrega está lá.
+
+O gerente revisa e pode pedir correções. Faz parte: as entregas parciais existem justamente para isso.
+
+::: callout-important
+## Se for atrasar, avise antes
+
+Imprevisto acontece. Se você não for conseguir cumprir um prazo, avise o gerente o quanto antes, para ele reorganizar o calendário com o cliente. Prazo perdido sem aviso chega à Diretoria.
 :::

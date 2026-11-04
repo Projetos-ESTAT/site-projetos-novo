@@ -1,8 +1,0 @@
----
-title: "Checklist do gerente"
-description: "Marque as etapas concluídas e veja qual é o próximo passo."
----
-
-::: em-construcao
-**Em construção.** O checklist antigo (shinylive) vai ser refeito em JavaScript: mais leve, com todas as jornadas e com o progresso salvo no navegador.
-:::

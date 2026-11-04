@@ -1,8 +1,0 @@
----
-title: "Equipe"
-description: "Quem faz parte da Diretoria de Projetos neste semestre."
----
-
-::: em-construcao
-**Em construção.** Página nova.
-:::

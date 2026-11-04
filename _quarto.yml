@@ -8,7 +8,8 @@ website:
   title: "Projetos ESTAT"
   description: "Guia da Diretoria de Projetos da ESTAT: jornadas, guias e ferramentas para quem toca projeto."
   favicon: assets/img/logo-estat.svg
-  site-url: https://site-projetos-estat.netlify.app
+  site-url: https://projetos-estat.github.io/site-projetos-novo/
+  repo-url: https://github.com/Projetos-ESTAT/site-projetos-novo
   search:
     location: navbar
     type: overlay
@@ -22,39 +23,17 @@ website:
       - text: Jornadas
         menu:
           - href: jornadas/index.qmd
-            text: Visão geral e alocação
-          - text: "---"
-          - href: jornadas/relatorios.qmd
-            text: Relatórios estatísticos
-          - href: jornadas/dashboards.qmd
-            text: Dashboards
-          - href: jornadas/consultoria.qmd
-            text: Consultoria
-          - href: jornadas/modelos-preditivos.qmd
-            text: Modelos preditivos
-          - text: "---"
+            text: Jornada do gerente
           - href: jornadas/alocado.qmd
             text: Jornada do alocado
-      - text: Guias
-        menu:
-          - href: guias/comunicacao-cliente.qmd
-            text: Comunicação com o cliente
-          - href: guias/ferramentas.qmd
-            text: Ferramentas do projeto
-      - text: Ferramentas
-        menu:
-          - href: ferramentas/checklist.qmd
+          - href: jornadas/checklist.qmd
             text: Checklist do gerente
-          - href: "https://nsd14o-gabriel-henrique.shinyapps.io/Controle-de-Atrasos/"
-            text: Controle de atrasos
-      - href: casos/index.qmd
-        text: Casos
+      - href: guias/comunicacao-cliente.qmd
+        text: Comunicação
       - text: A Diretoria
         menu:
           - href: diretoria/historia.qmd
             text: História
-          - href: diretoria/equipe.qmd
-            text: Equipe
           - href: sobre.qmd
             text: Sobre o site
   page-footer:
