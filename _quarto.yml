@@ -67,8 +67,8 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - assets/estat.scss
+      dark: [cosmo, assets/estat.scss, assets/escuro.scss]
+      light: [cosmo, assets/estat.scss, assets/claro.scss]
     toc: true
     toc-title: "Nesta página"
     toc-depth: 3

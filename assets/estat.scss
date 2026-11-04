@@ -1,13 +1,22 @@
 /*-- scss:defaults --*/
 
-// Identidade ESTAT
-$estat-vermelho: #980000;
-$estat-vinho: #6b0007;
-$estat-rosa: #f7e9e9;
-$tinta: #2a2323;
-$tinta-suave: #6f6464;
-$linha: #e6dddd;
-$fundo-alt: #faf7f7;
+// =====================================================================
+// Tema ESTAT — regras compartilhadas pelos modos claro e escuro.
+// As cores de cada modo ficam em claro.scss e escuro.scss; aqui só há
+// valores padrão (!default) e as regras visuais.
+// =====================================================================
+
+$estat-vermelho: #980000 !default;   // vermelho oficial da marca
+$acento: #980000 !default;           // links e destaques
+$acento-forte: #6b0007 !default;     // hover de links
+$fundo: #ffffff !default;
+$superficie: #faf7f7 !default;       // caixas e rodapé
+$superficie-2: #f7e9e9 !default;     // etapas da jornada
+$linha: #e6dddd !default;
+$tinta: #2a2323 !default;
+$tinta-suave: #6f6464 !default;
+$grade-cor: rgba(152, 0, 0, 0.07) !default;
+$modo-escuro: false !default;
 
 $font-family-sans-serif: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
 $headings-font-family: "Montserrat", sans-serif;
@@ -15,21 +24,32 @@ $headings-font-weight: 700;
 $font-size-root: 17px;
 $line-height-base: 1.65;
 
-$body-bg: #ffffff;
+$body-bg: $fundo;
 $body-color: $tinta;
 $primary: $estat-vermelho;
-$link-color: $estat-vermelho;
-$link-hover-color: $estat-vinho;
+$link-color: $acento;
+$link-hover-color: $acento-forte;
+$headings-color: $tinta;
+$border-color: $linha;
+$text-muted: $tinta-suave;
 
-$navbar-bg: #ffffff;
+$navbar-bg: $fundo;
 $navbar-fg: $tinta;
-$navbar-hl: $estat-vermelho;
+$navbar-hl: $acento;
 
-$footer-bg: $fundo-alt;
+$footer-bg: $superficie;
 $footer-fg: $tinta-suave;
 
-$border-color: $linha;
-$callout-color-tip: $estat-vermelho;
+$dropdown-bg: $fundo;
+$dropdown-color: $tinta;
+$dropdown-link-color: $tinta;
+$dropdown-link-hover-color: $acento;
+$dropdown-link-hover-bg: $superficie-2;
+$dropdown-border-color: $linha;
+
+$code-block-bg: $superficie;
+$code-color: $acento;
+$callout-color-tip: $acento;
 
 /*-- scss:rules --*/
 
@@ -44,6 +64,7 @@ $callout-color-tip: $estat-vermelho;
 // ---------- Base ----------
 body {
   font-feature-settings: "kern", "liga";
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4 {
@@ -54,7 +75,7 @@ h1, h2, h3, h4 {
 h2 {
   margin-top: 2.4rem;
   padding-bottom: 0.3rem;
-  border-bottom: 2px solid $estat-rosa;
+  border-bottom: 1px solid $linha;
 }
 
 #quarto-content main p,
@@ -68,20 +89,25 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid $estat-vermelho;
-  outline-offset: 2px;
+  outline: 2px solid $acento;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: $estat-vermelho;
+  color: #fff;
 }
 
 // ---------- Navbar ----------
 .navbar {
-  border-bottom: 4px solid $estat-vermelho;
+  border-bottom: 2px solid $acento;
   box-shadow: none;
 }
 
 .navbar-brand .navbar-title {
   font-family: "Bungee", sans-serif;
   font-weight: 400;
-  color: $estat-vermelho;
+  color: $acento;
   font-size: 1.15rem;
   letter-spacing: 0.02em;
 }
@@ -99,23 +125,27 @@ a {
 
 .navbar .nav-link.active,
 .navbar .nav-link:hover {
-  color: $estat-vermelho !important;
+  color: $acento !important;
 }
 
 .dropdown-menu {
   border: 1px solid $linha;
-  border-top: 3px solid $estat-vermelho;
+  border-top: 2px solid $acento;
   border-radius: 0 0 6px 6px;
   font-size: 0.95rem;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
-  background-color: $estat-rosa;
-  color: $estat-vinho;
+  background-color: $superficie-2;
+  color: $acento;
 }
 
-// ---------- Título das páginas internas ----------
+.dropdown-divider {
+  border-color: $linha;
+}
+
+// ---------- Páginas internas ----------
 .quarto-title-block .title {
   font-size: 2.3rem;
   color: $tinta;
@@ -126,21 +156,25 @@ a {
   color: $tinta-suave;
 }
 
-// ---------- Callouts ----------
+#TOC .nav-link.active,
+#TOC a.active {
+  color: $acento;
+  border-left-color: $acento;
+}
+
 .callout {
   border-radius: 6px;
 }
 
-// ---------- Aviso "em construção" ----------
 .em-construcao {
-  border: 1px dashed $estat-vermelho;
-  background: $fundo-alt;
+  border: 1px dashed $acento;
+  background: $superficie;
   border-radius: 6px;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
   color: $tinta;
 
-  strong { color: $estat-vermelho; }
+  strong { color: $acento; }
   p:last-child { margin-bottom: 0; }
 }
 
@@ -150,23 +184,79 @@ a {
   margin: 0 auto;
 }
 
+// Topo: papel milimetrado + curva normal
 .home-hero {
-  padding: 3.5rem 0 0;
+  position: relative;
+  padding: 4rem 0 0.5rem;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 -6vw -2rem -6vw;
+    z-index: -2;
+    background-image:
+      linear-gradient($grade-cor 1px, transparent 1px),
+      linear-gradient(90deg, $grade-cor 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 75% at 62% 45%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 60% 75% at 62% 45%, #000 30%, transparent 75%);
+  }
+
+  .home-curva {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 1.5rem;
+    width: min(500px, 44%);
+    height: auto;
+    pointer-events: none;
+
+    .curva {
+      fill: none;
+      stroke: $acento;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      @if $modo-escuro {
+        filter: drop-shadow(0 0 6px rgba($acento, 0.75));
+      }
+    }
+
+    .area {
+      fill: $acento;
+      opacity: if($modo-escuro, 0.10, 0.06);
+    }
+
+    .eixo, .media {
+      stroke: $tinta-suave;
+      stroke-width: 1;
+      opacity: 0.55;
+    }
+
+    .media {
+      stroke-dasharray: 4 6;
+    }
+  }
 
   .home-titulo {
+    display: block;
     font-family: "Bungee", sans-serif;
     font-weight: 400;
-    color: $estat-vermelho;
+    color: $acento;
     font-size: clamp(2.6rem, 7vw, 5rem);
     line-height: 1;
     margin: 0 0 1rem;
     border: none;
     padding: 0;
+    @if $modo-escuro {
+      text-shadow: 0 0 28px rgba($acento, 0.35);
+    }
   }
 
   .home-lead {
+    display: block;
     font-size: 1.2rem;
-    max-width: 46ch;
+    max-width: 30ch;
     color: $tinta;
     margin: 0;
   }
@@ -188,13 +278,18 @@ a {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 0;
   }
 
   li {
     flex: 1 1 0;
     max-width: none;
     margin: 0;
+    transition: filter 0.2s ease;
+
+    &:hover,
+    &:focus-within {
+      filter: drop-shadow(0 0 if($modo-escuro, 10px, 6px) rgba($acento, if($modo-escuro, 0.7, 0.35)));
+    }
   }
 
   a {
@@ -205,12 +300,12 @@ a {
     height: 100%;
     min-height: 104px;
     padding: 0.9rem calc(var(--seta) + 0.6rem) 0.9rem calc(var(--seta) + 1rem);
-    background: $estat-rosa;
-    color: $estat-vinho;
+    background: $superficie-2;
+    color: $acento;
     text-decoration: none;
     clip-path: polygon(0 0, calc(100% - var(--seta)) 0, 100% 50%, calc(100% - var(--seta)) 100%, 0 100%, var(--seta) 50%);
     margin-right: -14px;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 
     .etapa-nome {
       font-weight: 700;
@@ -227,9 +322,10 @@ a {
 
     &:hover,
     &:focus-visible {
+      outline: none;
       background: $estat-vermelho;
       color: #fff;
-      .etapa-desc { color: #fff; }
+      .etapa-desc { color: rgba(255, 255, 255, 0.88); }
     }
   }
 
@@ -238,8 +334,7 @@ a {
     padding-left: 1.1rem;
     background: $estat-vermelho;
     color: #fff;
-    .etapa-desc { color: rgba(255, 255, 255, 0.85); }
-    &:hover, &:focus-visible { background: $estat-vinho; }
+    .etapa-desc { color: rgba(255, 255, 255, 0.88); }
   }
 
   li:last-child a { margin-right: 0; }
@@ -269,7 +364,7 @@ a {
       color: $tinta;
       font-weight: inherit;
       text-decoration: none;
-      &:hover { color: $estat-vermelho; text-decoration: underline; }
+      &:hover { color: $acento; text-decoration: underline; }
     }
   }
 
@@ -294,7 +389,15 @@ a {
 
 // ---------- Celular ----------
 @media (max-width: 767.98px) {
-  .home-hero { padding: 2rem 0 1rem; }
+  .home-hero {
+    padding: 2.25rem 0 0.5rem;
+
+    .home-curva {
+      width: 78%;
+      top: 0.5rem;
+      opacity: 0.45;
+    }
+  }
 
   .jornada {
     ol { flex-direction: column; gap: 6px; }
@@ -306,7 +409,7 @@ a {
       margin-right: 0;
       min-height: 0;
       padding: 0.75rem 1rem;
-      border-left: 5px solid $estat-vermelho;
+      border-left: 4px solid $acento;
       border-radius: 0 6px 6px 0;
     }
   }
