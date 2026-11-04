@@ -1,0 +1,8 @@
+---
+title: "Jornada: consultoria"
+description: "O passo a passo do gerente em projetos de consultoria."
+---
+
+::: em-construcao
+**Em construção.** Vai ser escrita a partir das anotações das entrevistas com gerentes de consultoria, que estavam no site antigo mas fora do menu.
+:::

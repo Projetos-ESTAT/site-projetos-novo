@@ -1,0 +1,8 @@
+---
+title: "História da Diretoria de Projetos"
+description: "De onde a Diretoria veio, semestre a semestre."
+---
+
+::: em-construcao
+**Em construção.** Vem da página <em>História</em> do site antigo, revisada e atualizada até 2026.2.
+:::

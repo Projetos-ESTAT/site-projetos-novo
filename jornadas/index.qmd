@@ -1,0 +1,25 @@
+---
+title: "Jornada do gerente"
+description: "As etapas comuns a todo projeto, da alocação ao fechamento. O que muda de um produto para outro está na jornada específica."
+---
+
+::: em-construcao
+**Em construção.** Vem de <em>Jornadas → Início</em> do site antigo, mais as etapas comuns que hoje se repetem em cada jornada.
+:::
+
+## Alocação {#alocacao}
+
+## Contextualização {#contextualizacao}
+
+## Estruturação {#estruturacao}
+
+## Execução {#execucao}
+
+## Fechamento {#fechamento}
+
+## Jornadas por produto
+
+-   [Relatórios estatísticos](relatorios.qmd)
+-   [Dashboards](dashboards.qmd)
+-   [Consultoria](consultoria.qmd)
+-   [Modelos preditivos](modelos-preditivos.qmd)

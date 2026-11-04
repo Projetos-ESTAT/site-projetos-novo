@@ -1,0 +1,8 @@
+---
+title: "Jornada: relatórios estatísticos"
+description: "O passo a passo do gerente em projetos de relatório."
+---
+
+::: em-construcao
+**Em construção.** Vem de <em>Jornadas → Relatórios</em> do site antigo, revisado e reorganizado nas cinco etapas da jornada.
+:::

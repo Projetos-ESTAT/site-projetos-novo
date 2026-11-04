@@ -1,0 +1,8 @@
+---
+title: "Jornada do alocado"
+description: "O que esperar e o que fazer quando você é alocado num projeto."
+---
+
+::: em-construcao
+**Em construção.** Vem de <em>Jornadas → Alocados - Quarto</em> do site antigo, revisado.
+:::

@@ -1,0 +1,76 @@
+---
+pagetitle: "Projetos ESTAT"
+page-layout: full
+toc: false
+title-block-style: none
+---
+
+::: home
+
+::: home-hero
+[Projetos]{.home-titulo role="heading" aria-level="1"}
+
+[Tudo o que você precisa para tocar um projeto na ESTAT: o passo a passo de cada etapa, os modelos de mensagem e as ferramentas da Diretoria.]{.home-lead}
+:::
+
+::: jornada
+[Em que pé está o seu projeto?]{.jornada-legenda}
+
+1.  [[Alocação]{.etapa-nome} [O projeto chegou no Slack e você foi alocado]{.etapa-desc}](jornadas/index.qmd#alocacao)
+2.  [[Contextualização]{.etapa-nome} [Entender o cliente com o comercial e passar para a equipe]{.etapa-desc}](jornadas/index.qmd#contextualizacao)
+3.  [[Estruturação]{.etapa-nome} [Slack, Pipefy, Clockify, Drive, GitHub e grupo com o cliente]{.etapa-desc}](jornadas/index.qmd#estruturacao)
+4.  [[Execução]{.etapa-nome} [Kickoff, calendarização, atualizações e entregas parciais]{.etapa-desc}](jornadas/index.qmd#execucao)
+5.  [[Fechamento]{.etapa-nome} [Entrega final, NPS, CSAT e feedback da equipe]{.etapa-desc}](jornadas/index.qmd#fechamento)
+:::
+
+::: secoes
+
+::: secao
+## [Jornadas](jornadas/index.qmd)
+
+O passo a passo do gerente para cada tipo de produto, da alocação ao fechamento.
+
+-   [Relatórios](jornadas/relatorios.qmd)
+-   [Dashboards](jornadas/dashboards.qmd)
+-   [Consultoria](jornadas/consultoria.qmd)
+-   [Modelos preditivos](jornadas/modelos-preditivos.qmd)
+-   [Alocado](jornadas/alocado.qmd)
+:::
+
+::: secao
+## [Guias](guias/comunicacao-cliente.qmd)
+
+Como falar com o cliente e como usar cada ferramenta do projeto.
+
+-   [Comunicação com o cliente](guias/comunicacao-cliente.qmd)
+-   [Ferramentas do projeto](guias/ferramentas.qmd)
+:::
+
+::: secao
+## [Ferramentas](ferramentas/checklist.qmd)
+
+Para acompanhar o projeto no dia a dia.
+
+-   [Checklist do gerente](ferramentas/checklist.qmd)
+-   [Controle de atrasos](https://nsd14o-gabriel-henrique.shinyapps.io/Controle-de-Atrasos/)
+:::
+
+::: secao
+## [Casos](casos/index.qmd)
+
+Gerentes contam como foi tocar projetos reais: o que deu certo e o que fariam diferente.
+:::
+
+::: secao
+## [A Diretoria](diretoria/historia.qmd)
+
+De onde a Diretoria de Projetos veio e quem faz parte dela hoje.
+
+-   [História](diretoria/historia.qmd)
+-   [Equipe](diretoria/equipe.qmd)
+-   [Sobre o site](sobre.qmd)
+:::
+
+:::
+
+:::

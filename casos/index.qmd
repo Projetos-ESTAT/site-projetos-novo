@@ -1,0 +1,8 @@
+---
+title: "Casos"
+description: "Gerentes contam como foi tocar projetos reais."
+---
+
+::: em-construcao
+**Em construção.** Vem de <em>Papos sobre projetos</em> do site antigo (PF24008, PJ23008 e PF24033). Novos casos entram aqui.
+:::

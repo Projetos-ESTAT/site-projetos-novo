@@ -1,0 +1,8 @@
+---
+title: "Jornada: modelos preditivos"
+description: "O passo a passo do gerente em projetos de modelagem preditiva."
+---
+
+::: em-construcao
+**Em construção.** Página nova: ainda não existe no site antigo. Precisa de material de quem já gerenciou esse tipo de projeto.
+:::

@@ -1,0 +1,8 @@
+---
+title: "Comunicação com o cliente"
+description: "Modelos de mensagem e boas práticas para cada momento do projeto."
+---
+
+::: em-construcao
+**Em construção.** Vem do <em>Manual de UX</em> do site antigo, revisado, com os exemplos generalizados.
+:::

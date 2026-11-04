@@ -1,0 +1,319 @@
+/*-- scss:defaults --*/
+
+// Identidade ESTAT
+$estat-vermelho: #980000;
+$estat-vinho: #6b0007;
+$estat-rosa: #f7e9e9;
+$tinta: #2a2323;
+$tinta-suave: #6f6464;
+$linha: #e6dddd;
+$fundo-alt: #faf7f7;
+
+$font-family-sans-serif: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+$headings-font-family: "Montserrat", sans-serif;
+$headings-font-weight: 700;
+$font-size-root: 17px;
+$line-height-base: 1.65;
+
+$body-bg: #ffffff;
+$body-color: $tinta;
+$primary: $estat-vermelho;
+$link-color: $estat-vermelho;
+$link-hover-color: $estat-vinho;
+
+$navbar-bg: #ffffff;
+$navbar-fg: $tinta;
+$navbar-hl: $estat-vermelho;
+
+$footer-bg: $fundo-alt;
+$footer-fg: $tinta-suave;
+
+$border-color: $linha;
+$callout-color-tip: $estat-vermelho;
+
+/*-- scss:rules --*/
+
+// ---------- Fontes da marca (hospedadas no próprio site) ----------
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/montserrat-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 500; font-display: swap; src: url("assets/fonts/montserrat-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 600; font-display: swap; src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 700; font-display: swap; src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: italic; font-weight: 400; font-display: swap; src: url("assets/fonts/montserrat-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Bungee"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/bungee-latin-400-normal.woff2") format("woff2"); }
+
+// ---------- Base ----------
+body {
+  font-feature-settings: "kern", "liga";
+}
+
+h1, h2, h3, h4 {
+  color: $tinta;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  margin-top: 2.4rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid $estat-rosa;
+}
+
+#quarto-content main p,
+#quarto-content main li {
+  max-width: 72ch;
+}
+
+a {
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 3px solid $estat-vermelho;
+  outline-offset: 2px;
+}
+
+// ---------- Navbar ----------
+.navbar {
+  border-bottom: 4px solid $estat-vermelho;
+  box-shadow: none;
+}
+
+.navbar-brand .navbar-title {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  color: $estat-vermelho;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.navbar-logo {
+  height: 34px;
+  width: 34px;
+  max-height: none;
+}
+
+.navbar .nav-link {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: $estat-vermelho !important;
+}
+
+.dropdown-menu {
+  border: 1px solid $linha;
+  border-top: 3px solid $estat-vermelho;
+  border-radius: 0 0 6px 6px;
+  font-size: 0.95rem;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: $estat-rosa;
+  color: $estat-vinho;
+}
+
+// ---------- Título das páginas internas ----------
+.quarto-title-block .title {
+  font-size: 2.3rem;
+  color: $tinta;
+}
+
+.quarto-title-block .description,
+.quarto-title-block .subtitle {
+  color: $tinta-suave;
+}
+
+// ---------- Callouts ----------
+.callout {
+  border-radius: 6px;
+}
+
+// ---------- Aviso "em construção" ----------
+.em-construcao {
+  border: 1px dashed $estat-vermelho;
+  background: $fundo-alt;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  color: $tinta;
+
+  strong { color: $estat-vermelho; }
+  p:last-child { margin-bottom: 0; }
+}
+
+// ---------- Home ----------
+.home {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.home-hero {
+  padding: 3.5rem 0 0;
+
+  .home-titulo {
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    color: $estat-vermelho;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 1;
+    margin: 0 0 1rem;
+    border: none;
+    padding: 0;
+  }
+
+  .home-lead {
+    font-size: 1.2rem;
+    max-width: 46ch;
+    color: $tinta;
+    margin: 0;
+  }
+}
+
+// A jornada em setas — o chevron do logo virando caminho
+.jornada {
+  margin: 2.75rem 0 1rem;
+
+  .jornada-legenda {
+    font-weight: 600;
+    color: $tinta-suave;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0;
+  }
+
+  li {
+    flex: 1 1 0;
+    max-width: none;
+    margin: 0;
+  }
+
+  a {
+    --seta: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    min-height: 104px;
+    padding: 0.9rem calc(var(--seta) + 0.6rem) 0.9rem calc(var(--seta) + 1rem);
+    background: $estat-rosa;
+    color: $estat-vinho;
+    text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - var(--seta)) 0, 100% 50%, calc(100% - var(--seta)) 100%, 0 100%, var(--seta) 50%);
+    margin-right: -14px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    .etapa-nome {
+      font-weight: 700;
+      font-size: 1.02rem;
+      line-height: 1.25;
+    }
+
+    .etapa-desc {
+      font-size: 0.82rem;
+      line-height: 1.35;
+      margin-top: 0.3rem;
+      color: $tinta-suave;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: $estat-vermelho;
+      color: #fff;
+      .etapa-desc { color: #fff; }
+    }
+  }
+
+  li:first-child a {
+    clip-path: polygon(0 0, calc(100% - var(--seta)) 0, 100% 50%, calc(100% - var(--seta)) 100%, 0 100%);
+    padding-left: 1.1rem;
+    background: $estat-vermelho;
+    color: #fff;
+    .etapa-desc { color: rgba(255, 255, 255, 0.85); }
+    &:hover, &:focus-visible { background: $estat-vinho; }
+  }
+
+  li:last-child a { margin-right: 0; }
+}
+
+// Seções do site
+.secoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0 3rem;
+  margin: 3rem 0 2rem;
+  border-top: 1px solid $linha;
+}
+
+.secao {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid $linha;
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem;
+    padding: 0;
+    border: none;
+
+    a {
+      color: $tinta;
+      font-weight: inherit;
+      text-decoration: none;
+      &:hover { color: $estat-vermelho; text-decoration: underline; }
+    }
+  }
+
+  p {
+    color: $tinta-suave;
+    margin: 0 0 0.6rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    font-size: 0.93rem;
+    font-weight: 600;
+  }
+
+  li { margin: 0; }
+}
+
+// ---------- Celular ----------
+@media (max-width: 767.98px) {
+  .home-hero { padding: 2rem 0 1rem; }
+
+  .jornada {
+    ol { flex-direction: column; gap: 6px; }
+
+    a,
+    li:first-child a {
+      --seta: 0px;
+      clip-path: none;
+      margin-right: 0;
+      min-height: 0;
+      padding: 0.75rem 1rem;
+      border-left: 5px solid $estat-vermelho;
+      border-radius: 0 6px 6px 0;
+    }
+  }
+
+  .secoes { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

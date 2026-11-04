@@ -1,0 +1,8 @@
+---
+title: "Sobre o site"
+description: "Para que serve este site, quem fez e como contribuir."
+---
+
+::: em-construcao
+**Em construção.** Página nova: objetivo, créditos de quem construiu as versões anteriores e o passo a passo para editar.
+:::

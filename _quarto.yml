@@ -1,0 +1,82 @@
+project:
+  type: website
+  output-dir: _site
+
+lang: pt
+
+website:
+  title: "Projetos ESTAT"
+  description: "Guia da Diretoria de Projetos da ESTAT: jornadas, guias e ferramentas para quem toca projeto."
+  favicon: assets/img/logo-estat.svg
+  site-url: https://site-projetos-estat.netlify.app
+  search:
+    location: navbar
+    type: overlay
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    logo: assets/img/logo-estat.svg
+    logo-alt: "Logo da ESTAT"
+    title: "Projetos"
+    left:
+      - text: Jornadas
+        menu:
+          - href: jornadas/index.qmd
+            text: Visão geral e alocação
+          - text: "---"
+          - href: jornadas/relatorios.qmd
+            text: Relatórios estatísticos
+          - href: jornadas/dashboards.qmd
+            text: Dashboards
+          - href: jornadas/consultoria.qmd
+            text: Consultoria
+          - href: jornadas/modelos-preditivos.qmd
+            text: Modelos preditivos
+          - text: "---"
+          - href: jornadas/alocado.qmd
+            text: Jornada do alocado
+      - text: Guias
+        menu:
+          - href: guias/comunicacao-cliente.qmd
+            text: Comunicação com o cliente
+          - href: guias/ferramentas.qmd
+            text: Ferramentas do projeto
+      - text: Ferramentas
+        menu:
+          - href: ferramentas/checklist.qmd
+            text: Checklist do gerente
+          - href: "https://nsd14o-gabriel-henrique.shinyapps.io/Controle-de-Atrasos/"
+            text: Controle de atrasos
+      - href: casos/index.qmd
+        text: Casos
+      - text: A Diretoria
+        menu:
+          - href: diretoria/historia.qmd
+            text: História
+          - href: diretoria/equipe.qmd
+            text: Equipe
+          - href: sobre.qmd
+            text: Sobre o site
+  page-footer:
+    left: "Diretoria de Projetos — ESTAT, empresa júnior de consultoria estatística da UnB"
+    right:
+      - icon: github
+        href: https://github.com/Projetos-ESTAT
+        aria-label: GitHub da Diretoria de Projetos
+
+format:
+  html:
+    theme:
+      - cosmo
+      - assets/estat.scss
+    toc: true
+    toc-title: "Nesta página"
+    toc-depth: 3
+    smooth-scroll: true
+    link-external-newwindow: true
+    fig-cap-location: bottom
+
+crossref:
+  fig-title: Figura
+
+editor: visual

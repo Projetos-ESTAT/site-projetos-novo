@@ -1,0 +1,8 @@
+---
+title: "Jornada: dashboards"
+description: "O passo a passo do gerente em projetos de dashboard."
+---
+
+::: em-construcao
+**Em construção.** Vem de <em>Jornadas → Dashboard</em> do site antigo, revisado.
+:::
